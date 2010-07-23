@@ -1,5 +1,3 @@
-<!-- You can add this XML snippet to your Layman repository list to manage this
-overlay with layman. -->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
 <repositories xmlns="" version="1.0">
