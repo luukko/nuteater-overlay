@@ -15,3 +15,7 @@ Modified ebuild for the Awesome WM. Does not generate manpages unless USE="doc",
 
 Tools to manage Hotkeys, WLAN, Bluetooth and other features of
 an Asus EeePC.
+
+* dev-vcs/github-cli:
+
+A command-line interface to the GitHub Issues API v2.
