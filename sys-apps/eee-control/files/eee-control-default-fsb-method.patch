@@ -1,0 +1,11 @@
+--- data/eee-control.conf	2009-05-02 23:02:23.000000000 +0300
++++ data/eee-control.conf	2009-05-02 23:02:53.000000000 +0300
+@@ -5,7 +5,7 @@
+ ; i2c-dev -- use /dev/i2c-*
+ ; direct-io -- direct I/O access
+ ; none -- no FSB control
+-fsb-method: she
++fsb-method: i2c-dev
+ ; Use optimized fan control?
+ fan-control: yes
+ ; Override WiFi module and device.

@@ -1,0 +1,113 @@
+--- EeeControl/actions.py	2009-04-19 14:12:04.000000000 +0200
++++ EeeControl/actions.py	2009-04-19 15:38:21.000000000 +0200
+@@ -29,6 +29,7 @@
+ import config
+ import she
+ import ConfigParser
++import alsaaudio
+ 
+ #--------------------------------------------------------------------------
+ 
+@@ -144,6 +145,80 @@
+         # Fan control?
+         if self.fan_control: self.start_fan_control()
+ 
++    """handle muting/unmuting and decreasing/increasing of volume via pyalsaaudio"""
++    def pyalsa_handler(self, action):
++        # takes the following arguments for action: 'toggle_mute' or an integer (e.g. -10 ... 10)
++
++        # function is self-contained, i.e. it will decide itself whether to mute or unmute,
++        # or to which absolute value to set the volume
++
++        # will only manipulate LineOut -- PCM is not touched!
++        # Recommended: Check with alsamixer that PCM is set to 100
++
++        # EeePC 901; TODO: define in models.py
++        control_volume = 'LineOut'
++        controls_mute = ['LineOut', 'iSpeaker'] # muting LineOut mutes only headphones, not built-in speakers, gotta also use iSpeaker
++
++        if action == 'toggle_mute':
++            # first see which of the mixers for muting are available
++            mixers = {}
++            for control_mute in controls_mute:
++                try:
++                    mixers[control_mute] = alsaaudio.Mixer(control_mute)
++                except alsaaudio.ALSAAudioError:
++                    log("No such mixer: %s."%control_mute)
++
++            # see if any channel on any mixer is mute
++            anymute = False
++            for mixer in mixers:
++                try:
++                    mutes = mixers[mixer].getmute()
++                    for i in range(len(mutes)):
++                        if mutes[i]:
++                            anymute = True
++                            break
++                except alsaaudio.ALSAAudioError:
++                    # May not support muting
++                    pass
++
++            # if anything is mute, we unmute all -- and vice versa
++            if anymute == True:
++                for mixer in mixers:
++                    mixers[mixer].setmute(0)
++            else:
++                for mixer in mixers:
++                    mixers[mixer].setmute(1)
++
++        # no muting, set the volume on control_volume
++        else:
++            try:
++                mixer = alsaaudio.Mixer(control_volume)
++
++                volumes = mixer.getvolume()
++
++                # current average volume across channels
++                total_vol = 0
++                for i in range(len(volumes)):
++                    total_vol += volumes[i]
++                cur_vol = total_vol / len(volumes)
++
++                # requested volume change (relative)
++                mod_vol = int(action)
++
++                # new volume (absolute)
++                new_vol = cur_vol + mod_vol
++                if new_vol > 100: new_vol = 100
++                elif new_vol < 0: new_vol = 0
++
++                # Set same volume for all channel.
++                channel = alsaaudio.MIXER_CHANNEL_ALL
++                mixer.setvolume(new_vol, channel)
++
++            except alsaaudio.ALSAAudioError:
++                log("No such mixer: %s."%control_volume)
++
++
++
+     """Generalized on/off switching"""
+     @dbus.service.method("org.eee.Eee")
+     def set_feature(self, what, status):
+@@ -294,18 +369,15 @@
+ 
+     @dbus.service.method("org.eee.Eee")
+     def mute(self):
+-        if self.hwkey_control:
+-            self.fakekey(config.VOLUME_MUTE)
++        self.pyalsa_handler('toggle_mute')
+ 
+     @dbus.service.method("org.eee.Eee")
+     def vol_down(self):
+-        if self.hwkey_control:
+-            self.fakekey(config.VOLUME_DOWN)
++        self.pyalsa_handler(-5)
+ 
+     @dbus.service.method("org.eee.Eee")
+     def vol_up(self):
+-        if self.hwkey_control:
+-            self.fakekey(config.VOLUME_UP)
++        self.pyalsa_handler(5)
+ 
+     def brn_down(self):
+         log("lowering brightness")
