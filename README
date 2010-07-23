@@ -1,20 +1,23 @@
-These ebuilds you will find in this overlay:
-============================================
+Ebuilds you will find in this overlay:
+=======================================
 
 * sci-libs/libsfmt & sci-libs/libdsfmt:
 
-SIMD-oriented Fast Mersenne Twister libraries
+SIMD-oriented Fast Mersenne Twister libraries.
 
 
 * x11-wm/awesome:
 
-Modified ebuild for the Awesome WM. Does not generate manpages unless USE="doc", because the requirements for building the documentation are quite hefty.
+Modified ebuild for the Awesome WM. Does not generate manpages unless
+USE="doc", because the requirements for building the documentation are quite
+hefty.
 
 
 * sys-apps/eee-control:
 
 Tools to manage Hotkeys, WLAN, Bluetooth and other features of
 an Asus EeePC.
+
 
 * dev-vcs/github-cli:
 
