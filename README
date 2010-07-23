@@ -19,3 +19,9 @@ an Asus EeePC.
 * dev-vcs/github-cli:
 
 A command-line interface to the GitHub Issues API v2.
+
+
+* sys-power/cpufreqd:
+
+CPU frequency scaling utility cpufreqd with a patch fixing a segfault with
+newer gcc versions.
