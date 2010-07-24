@@ -1,5 +1,5 @@
 diff --git a/EeeControl/actions.py b/EeeControl/actions.py
-index 8d26bae..26a745f 100644
+index 8d26bae..bd32342 100644
 --- a/EeeControl/actions.py
 +++ b/EeeControl/actions.py
 @@ -29,6 +29,7 @@ import utils
@@ -7,13 +7,13 @@ index 8d26bae..26a745f 100644
  import she
  import ConfigParser
 +import alsaaudio
-
+ 
  #--------------------------------------------------------------------------
-
-@@ -174,6 +175,78 @@ class EeeActions(dbus.service.Object):
+ 
+@@ -174,6 +175,82 @@ class EeeActions(dbus.service.Object):
          # Fan control?
          if self.fan_control: self.start_fan_control()
-
+ 
 +    """handle muting/unmuting and decreasing/increasing of volume via pyalsaaudio"""
 +    def pyalsa_handler(self, action):
 +        # takes the following arguments for action: 'toggle_mute' or an integer (e.g. -10 ... 10)
@@ -21,12 +21,17 @@ index 8d26bae..26a745f 100644
 +        # function is self-contained, i.e. it will decide itself whether to mute or unmute,
 +        # or to which absolute value to set the volume
 +
-+        # will only manipulate LineOut -- PCM is not touched!
++        # will only manipulate Master -- PCM is not touched!
 +        # Recommended: Check with alsamixer that PCM is set to 100
 +
 +        # EeePC 901; TODO: define in models.py
-+        control_volume = 'LineOut'
-+        controls_mute = ['LineOut', 'iSpeaker'] # muting LineOut mutes only headphones, not built-in speakers, gotta also use iSpeaker
++        # It seems newer alsa drivers have a Master mixer for the EEE, so we can simply use it to mute and
++        # change the volume. If you have problems please check which mixers you have.
++        # TODO implement some semi-intelligent way to check which mixers are available
++        #control_volume = 'LineOut'
++        #controls_mute = ['LineOut', 'iSpeaker'] # muting LineOut mutes only headphones, not built-in speakers, gotta also use iSpeaker
++        control_volume = 'Master'
++        controls_mute = ['Master']
 +
 +        if action == 'toggle_mute':
 +            # first see which of the mixers for muting are available
@@ -62,7 +67,6 @@ index 8d26bae..26a745f 100644
 +        else:
 +            try:
 +                mixer = alsaaudio.Mixer(control_volume)
-+
 +                volumes = mixer.getvolume()
 +
 +                # current average volume across channels
@@ -89,28 +93,28 @@ index 8d26bae..26a745f 100644
      """Generalized on/off switching"""
      @dbus.service.method("org.eee.Eee")
      def set_feature(self, what, status):
-@@ -324,21 +397,15 @@ class EeeActions(dbus.service.Object):
-
+@@ -324,21 +401,15 @@ class EeeActions(dbus.service.Object):
+ 
      @dbus.service.method("org.eee.Eee")
      def mute(self):
 -        if self.hwkey_control:
 -            #self.fakekey(config.VOLUME_MUTE)
 -            pass
 +        self.pyalsa_handler('toggle_mute')
-
+ 
      @dbus.service.method("org.eee.Eee")
      def vol_down(self):
 -        if self.hwkey_control:
 -            #self.fakekey(config.VOLUME_DOWN)
 -            pass
 +        self.pyalsa_handler(-5)
-
+ 
      @dbus.service.method("org.eee.Eee")
      def vol_up(self):
 -        if self.hwkey_control:
 -            #self.fakekey(config.VOLUME_UP)
 -            pass
 +        self.pyalsa_handler(5)
-
+ 
      def brn_down(self):
          log("lowering brightness")
