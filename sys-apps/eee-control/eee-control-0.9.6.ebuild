@@ -26,6 +26,10 @@ RDEPEND="gtk? ( dev-python/pygtk dev-python/gconf-python )
 	>=sys-apps/i2c-tools-3.0.2[python]
 	kde? ( x11-themes/gtk-engines-qt )"
 
+src_prepare() {
+	use alsa &&	epatch ${FILESDIR}/${P}-actions.py.patch || die "Patching actions.py failed."
+}
+
 src_compile() {
 	cd "${S}"
 	(python setup.py build && sh locale/update.sh) || die "Building the package failed!"
@@ -33,9 +37,6 @@ src_compile() {
 
 src_install() {
 	cd "${S}"
-	if use alsa; then
-		epatch ${FILESDIR}/${P}-actions.py.patch || die "Patching actions.py failed."
-	fi
 	python setup.py install --root ${D}  || die "The base installation routine failed!"
 	newinitd  ${FILESDIR}/eee-control-gentooinit eee-control || die "Inserting init script failed."
 	dodoc doc/README || die "Installing documentation failed."
