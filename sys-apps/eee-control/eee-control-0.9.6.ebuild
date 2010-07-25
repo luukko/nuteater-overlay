@@ -39,6 +39,7 @@ src_install() {
 	cd "${S}"
 	python setup.py install --root ${D}  || die "The base installation routine failed!"
 	newinitd  ${FILESDIR}/eee-control-gentooinit eee-control || die "Inserting init script failed."
+	newconfd ${FILESDIR}/eee-control-gentooconf eee-control || die "Inserting conf.d script failed."
 	dodoc doc/README || die "Installing documentation failed."
 	insinto /etc
 	doins data/eee-control.conf

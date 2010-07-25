@@ -9,6 +9,9 @@ depend() {
 
 start() {
 	ebegin "Starting eee-control daemon"
+	if [ "${DISABLE_CAMERA}" = "true" -a -e /sys/devices/platform/eeepc/camera ]; then
+		echo 0 > /sys/devices/platform/eeepc/camera
+	fi
 	start-stop-daemon --start -q --pidfile /var/run/eee-control-daemon.pid --exec /usr/bin/eee-control-daemon
 	eend $?
 }

@@ -1,0 +1,6 @@
+# configuration file for eee-control
+
+# Set this to true to disable the built-in camera at boot.
+# You can then enable it from eee-control.
+# By default kernel sets the camera on at every boot.
+DISABLE_CAMERA=false
