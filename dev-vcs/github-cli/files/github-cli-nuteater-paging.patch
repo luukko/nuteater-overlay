@@ -1,0 +1,297 @@
+diff --git a/AUTHORS.txt b/AUTHORS.txt
+index 93b345c..7f1d793 100644
+--- a/AUTHORS.txt
++++ b/AUTHORS.txt
+@@ -2,3 +2,4 @@ Sander Smits
+ Mark Norman Francis
+ Frederik Dohr
+ David Paleino
++Perttu Luukko
+diff --git a/README.rst b/README.rst
+index 5482bc8..17f1716 100644
+--- a/README.rst
++++ b/README.rst
+@@ -4,10 +4,10 @@ GitHub Issues API v2 - command-line interface
+ 
+ about
+ *****
+-`github-cli <http://packages.python.org/github-cli/>`_ provides an 
+-executable called ``ghi``, that can be used to access all of `GitHub 
+-<http://www.github.com/>`_'s documented `Issues API 
+-<http://develop.github.com/p/issues.html>`_ (v2) functionality from your 
++`github-cli <http://packages.python.org/github-cli/>`_ provides an
++executable called ``ghi``, that can be used to access all of `GitHub
++<http://www.github.com/>`_'s documented `Issues API
++<http://develop.github.com/p/issues.html>`_ (v2) functionality from your
+ command-line
+ 
+ github-cli is written in `Python <http://www.python.org/>`_
+@@ -15,7 +15,7 @@ github-cli is written in `Python <http://www.python.org/>`_
+ installation
+ ************
+ 
+-*on most UNIX-like systems, you'll probably need to run the following 
++*on most UNIX-like systems, you'll probably need to run the following
+ `install` commands as root or by using sudo*
+ 
+ **pip**
+@@ -44,7 +44,7 @@ installation
+   cd github-cli
+   python setup.py install
+ 
+-as a result, the ``ghi`` executable will be installed into a system ``bin`` 
++as a result, the ``ghi`` executable will be installed into a system ``bin``
+ directory
+ 
+ configuration
+@@ -59,7 +59,7 @@ you can find the username and API token on your GitHub's account page
+ usage
+ *****
+ from within a working directory with a remote that is hosted on
+-GitHub (remote named either ``origin`` or ``github`` for git repositories or 
++GitHub (remote named either ``origin`` or ``github`` for git repositories or
+ ``default`` or ``github`` for mercurial/`hg-git <http://hg-git.github.com/>`_ repositories), you can do this (note: with
+ the -r option, commands can be invoked from anywhere):
+ 
+@@ -69,17 +69,17 @@ the -r option, commands can be invoked from anywhere):
+   Usage: ghi command [args] [options]
+ 
+   Examples:
+-  ghi list [-s open|closed|all]       show open, closed or all issues 
++  ghi list [-s open|closed|all]       show open, closed or all issues
+                                       (default: open)
+   ghi [-s o|c|a] -v                   same as above, but with issue details
+   ghi                                 same as: ghi list
+   ghi -v                              same as: ghi list -v
+-  ghi [-s o|c] -w                     show issues' GitHub page in web browser 
++  ghi [-s o|c] -w                     show issues' GitHub page in web browser
+                                       (default: open)
+   ghi show <nr>                       show issue <nr>
+   ghi show <nr> -v                    same as above, but with comments
+   ghi <nr>                            same as: ghi show <nr>
+-  ghi <nr> -w                         show issue <nr>'s GitHub page in web 
++  ghi <nr> -w                         show issue <nr>'s GitHub page in web
+                                       browser
+   ghi open (o)                        create a new issue (with $EDITOR)
+   ghi close (c) <nr>                  close issue <nr>
+@@ -90,11 +90,11 @@ the -r option, commands can be invoked from anywhere):
+   ghi search (s) <term>               search for <term> (default: open)
+   ghi s <term> [-s o|c] -v            same as above, but with details
+   ghi s <term> -s closed              only search in closed issues
+-  ghi comment (m) <nr>                create a comment for issue <nr> 
++  ghi comment (m) <nr>                create a comment for issue <nr>
+                                       (with $EDITOR)
+-  ghi -r <user>/<repo>                specify a repository (can be used for 
++  ghi -r <user>/<repo>                specify a repository (can be used for
+                                       all commands)
+-  ghi -r <repo>                       specify a repository (gets user from 
++  ghi -r <repo>                       specify a repository (gets user from
+                                       global git config)
+ 
+   Description: command-line interface to GitHub's Issues API (v2)
+diff --git a/docs/fabfile.py b/docs/fabfile.py
+index ce5656a..66a5624 100644
+--- a/docs/fabfile.py
++++ b/docs/fabfile.py
+@@ -12,9 +12,9 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
+ 
+ def sphinxbuild():
+     local('sphinx-build -b html %s %s/html' % \
+-        (os.path.join(cur_dir, 'source'), 
++        (os.path.join(cur_dir, 'source'),
+          os.path.join(cur_dir, 'build')))
+-        
++
+ def create_zip():
+     # create zip for pypi, for example
+     local('cd %s && zip -r github-cli *' % os.path.join(cur_dir, 'build/html'))
+@@ -26,8 +26,3 @@ def build():
+     clean()
+     sphinxbuild()
+     create_zip()
+-
+-    
+-    
+-
+-    
+diff --git a/docs/source/index.rst b/docs/source/index.rst
+index 9ebe90f..6160100 100644
+--- a/docs/source/index.rst
++++ b/docs/source/index.rst
+@@ -10,10 +10,10 @@ GitHub Issues (v2) - CLI
+ About
+ =====
+ 
+-Installing `github-cli <http://packages.python.org/github-cli/>`_ will provide an 
+-executable called ``ghi``, that can be used to access all of `GitHub 
+-<http://www.github.com/>`_'s documented `Issues API 
+-<http://develop.github.com/p/issues.html>`_ (v2) functionality from your 
++Installing `github-cli <http://packages.python.org/github-cli/>`_ will provide an
++executable called ``ghi``, that can be used to access all of `GitHub
++<http://www.github.com/>`_'s documented `Issues API
++<http://develop.github.com/p/issues.html>`_ (v2) functionality from your
+ command-line.
+ It is written in `Python <http://www.python.org/>`_.
+ 
+@@ -22,8 +22,7 @@ Contents
+ 
+ .. toctree::
+    :maxdepth: 2
+-   
++
+    installation
+    configuration
+    usage
+-   
+\ No newline at end of file
+diff --git a/docs/source/installation.rst b/docs/source/installation.rst
+index 7838a64..44b741a 100644
+--- a/docs/source/installation.rst
++++ b/docs/source/installation.rst
+@@ -2,7 +2,7 @@
+ Installation
+ ============
+ 
+-*on most UNIX-like systems, you'll probably need to run the following 
++*on most UNIX-like systems, you'll probably need to run the following
+ `install` commands as root or by using sudo*
+ 
+ pip
+@@ -33,18 +33,18 @@ source
+   $ git clone git://github.com/jsmits/github-cli.git
+   $ cd github-cli
+   $ python setup.py install
+-  
+-as a result, the ``ghi`` executable will be installed into a system ``bin`` 
++
++as a result, the ``ghi`` executable will be installed into a system ``bin``
+ directory
+ 
+-========  
++========
+ Download
+ ========
+ 
+ Python Package Index
+ ====================
+ 
+-You can download source tarballs from PyPi 
++You can download source tarballs from PyPi
+ `here <http://pypi.python.org/pypi/github-cli>`_.
+ 
+ For older versions, use something like this:
+@@ -54,7 +54,7 @@ Change the version to whatever version you would like to view and/or download.
+ GitHub
+ ======
+ 
+-Of course, you can always get the latest source code from the 
++Of course, you can always get the latest source code from the
+ `git repository <http://github.com/jsmits/github-cli/>`_:
+ 
+ ::
+diff --git a/docs/source/usage.rst b/docs/source/usage.rst
+index 0b63534..63f8ff7 100644
+--- a/docs/source/usage.rst
++++ b/docs/source/usage.rst
+@@ -2,7 +2,7 @@ Usage
+ =====
+ 
+ From within a working directory with a remote that is hosted on
+-GitHub (remote named either ``origin`` or ``github`` for git repositories or 
++GitHub (remote named either ``origin`` or ``github`` for git repositories or
+ ``default`` or ``github`` for mercurial/`hg-git <http://hg-git.github.com/>`_ repositories), you can do this (note: with
+ the -r option, commands can be invoked from anywhere):
+ 
+@@ -13,17 +13,17 @@ the -r option, commands can be invoked from anywhere):
+   Usage: ghi command [args] [options]
+ 
+   Examples:
+-  ghi list [-s open|closed|all]       show open, closed or all issues 
++  ghi list [-s open|closed|all]       show open, closed or all issues
+                                       (default: open)
+   ghi [-s o|c|a] -v                   same as above, but with issue details
+   ghi                                 same as: ghi list
+   ghi -v                              same as: ghi list -v
+-  ghi [-s o|c] -w                     show issues' GitHub page in web browser 
++  ghi [-s o|c] -w                     show issues' GitHub page in web browser
+                                       (default: open)
+   ghi show <nr>                       show issue <nr>
+   ghi show <nr> -v                    same as above, but with comments
+   ghi <nr>                            same as: ghi show <nr>
+-  ghi <nr> -w                         show issue <nr>'s GitHub page in web 
++  ghi <nr> -w                         show issue <nr>'s GitHub page in web
+                                       browser
+   ghi open (o)                        create a new issue (with $EDITOR)
+   ghi close (c) <nr>                  close issue <nr>
+@@ -34,11 +34,11 @@ the -r option, commands can be invoked from anywhere):
+   ghi search (s) <term>               search for <term> (default: open)
+   ghi s <term> [-s o|c] -v            same as above, but with details
+   ghi s <term> -s closed              only search in closed issues
+-  ghi comment (m) <nr>                create a comment for issue <nr> 
++  ghi comment (m) <nr>                create a comment for issue <nr>
+                                       (with $EDITOR)
+-  ghi -r <user>/<repo>                specify a repository (can be used for 
++  ghi -r <user>/<repo>                specify a repository (can be used for
+                                       all commands)
+-  ghi -r <repo>                       specify a repository (gets user from 
++  ghi -r <repo>                       specify a repository (gets user from
+                                       global git config)
+ 
+   Description: command-line interface to GitHub's Issues API (v2)
+diff --git a/setup.cfg b/setup.cfg
+index 6af8cbe..b80429d 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -2,5 +2,5 @@
+ verbosity=2
+ detailed-errors=1
+ 
+-[aliases]  
+-testc = nosetests --cover-package=github --with-coverage
+\ No newline at end of file
++[aliases]
++testc = nosetests --cover-package=github --with-coverage
+diff --git a/src/github/utils.py b/src/github/utils.py
+index b907dc6..9f67983 100644
+--- a/src/github/utils.py
++++ b/src/github/utils.py
+@@ -163,7 +163,29 @@ class Pager(object):
+         self.cmd = ''
+ 
+         if hasattr(sys.stdout, 'isatty') and sys.stdout.isatty():
+-            pager_commands = ['more -EMR', 'more', 'less -MR', 'less']
++            # use core.pager if it is set
++            command = "git config core.pager"
++            stdout, stderr = Popen(command, shell=True, stdin=PIPE, stdout=PIPE,
++                stderr=PIPE).communicate()
++            if stderr:
++                for line in stderr.splitlines():
++                    print line
++                sys.exit(1)
++            if stdout:
++                cmd = stdout.strip()
++                self.proc = Popen(cmd, shell=True, stdin=PIPE, stderr=PIPE)
++                self.file = self.proc.stdin
++                self.cmd = cmd
++                return
++            # use PAGER if it is set
++            cmd = os.getenv("PAGER")
++            if cmd:
++                self.proc = Popen(cmd, shell=True, stdin=PIPE, stderr=PIPE)
++                self.file = self.proc.stdin
++                self.cmd = cmd
++                return
++            # try some fallbacks
++            pager_commands = ['less -FRX', 'less', 'more']
+             for cmd in pager_commands:
+                 if hasattr(os, 'system') and \
+                               os.system('(%s) 2>/dev/null' % cmd) == 0:
+@@ -182,8 +204,6 @@ class Pager(object):
+             self.file.write("%s\n" % text)
+ 
+     def close(self):
+-        if 'less' in self.cmd:
+-            self.write("press q to quit")
+         if self.proc:
+             self.file.close()
+             try:
