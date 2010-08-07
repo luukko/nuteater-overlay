@@ -44,26 +44,13 @@ pkg_setup() {
 }
 
 pkg_postinst() {
-	ewarn "Before you start eee-control daemon, it is vitally important to remove/disable"
-	ewarn "all EeePC related stuff from /etc/acpi and restart acpid."
-	echo
-	elog "A 2.6.27 kernel or higher is required, with full support for the EeePC hardware."
-	elog "Go to http://www.zirona.com/misc/code/eee-control/eeepc-kernelconfig for a"
-	elog 'sample .config (use with `make oldconfig`).'
-	echo
-	ewarn "To use the eee-control-tray in your desktop environment as regular user, add"
-	ewarn "yourself to the powerdev group."
-	echo
-	elog "Please note that eee-control now has a configuration file which is"
-	elog "installed at /etc/eee-control.conf "
+	elog "To use the eee-control-tray in your desktop environment as regular user, add"
+	elog "yourself to the powerdev group."
 	echo
 	elog "Please visit http://forums.gentoo.org/viewtopic-p-5280572.html to share your"
 	elog "experience with this ebuild."
 	echo
-
-	if ! use gnome; then
-		elog "If you want eee-control to use features of the gnome-power-manager, please"
-		elog "emerge gnome-extra/gnome-power-manager (if you haven't already), or re-emerge"
-		elog "this package with the gnome USE flag enabled."
-	fi
+	ewarn "Audio hotkeys are no longer handled by eee-control. Make sure your"
+	ewarn "window manager or some other application maps them to relevant"
+	ewarn "functions."
 }
