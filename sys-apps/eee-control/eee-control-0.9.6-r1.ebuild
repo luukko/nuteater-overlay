@@ -15,15 +15,14 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~x86"
 
-IUSE="gnome gtk kde +xosd"
+IUSE="gnome gtk +xosd"
 
 RDEPEND="gtk? ( dev-python/pygtk dev-python/gconf-python )
 	gnome? ( gnome-extra/gnome-power-manager )
 	xosd? ( x11-libs/xosd )
 	dev-python/notify-python
 	dev-python/dbus-python
-	>=sys-apps/i2c-tools-3.0.2[python]
-	kde? ( x11-themes/gtk-engines-qtcurve )"
+	>=sys-apps/i2c-tools-3.0.2[python]"
 
 src_compile() {
 	cd "${S}"
