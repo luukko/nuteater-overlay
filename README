@@ -28,3 +28,8 @@ A command-line interface to the GitHub Issues API v2.
 
 CPU frequency scaling utility cpufreqd with a patch fixing a segfault with
 newer gcc versions.
+
+
+* net-wireless/rt2860-firmware:
+
+Firmware files for Ralink rt2860 chipsets. Split off from sys-kernel/linux-firmware.
