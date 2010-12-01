@@ -33,3 +33,8 @@ newer gcc versions.
 * net-wireless/rt2860-firmware:
 
 Firmware files for Ralink rt2860 chipsets. Split off from sys-kernel/linux-firmware.
+
+
+* sci-libs/armadillo
+
+C++ linear algebra library
