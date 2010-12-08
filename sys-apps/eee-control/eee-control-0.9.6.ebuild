@@ -24,7 +24,8 @@ RDEPEND="gtk? ( dev-python/pygtk dev-python/gconf-python )
 	dev-python/notify-python
 	dev-python/dbus-python
 	>=sys-apps/i2c-tools-3.0.2[python]
-	kde? ( x11-themes/gtk-engines-qtcurve )"
+	kde? ( x11-themes/gtk-engines-qtcurve )
+	sys-power/acpid"
 
 src_prepare() {
 	use alsa &&	epatch ${FILESDIR}/${P}-actions.py.patch || die "Patching actions.py failed."

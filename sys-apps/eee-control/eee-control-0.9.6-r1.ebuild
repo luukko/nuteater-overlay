@@ -22,7 +22,8 @@ RDEPEND="gtk? ( dev-python/pygtk dev-python/gconf-python )
 	xosd? ( x11-libs/xosd )
 	dev-python/notify-python
 	dev-python/dbus-python
-	>=sys-apps/i2c-tools-3.0.2[python]"
+	>=sys-apps/i2c-tools-3.0.2[python]
+	sys-power/acpid"
 
 src_compile() {
 	cd "${S}"
