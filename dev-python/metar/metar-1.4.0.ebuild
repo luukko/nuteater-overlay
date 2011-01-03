@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/python-metar/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DOCS="CHANGES README get_report.py parse_metar.py sample.py"
