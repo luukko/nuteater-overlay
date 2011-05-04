@@ -37,7 +37,7 @@ Firmware files for Ralink rt2860 chipsets. Split off from sys-kernel/linux-firmw
 
 * sci-libs/armadillo
 
-C++ linear algebra library
+C++ linear algebra library.
 
 
 * dev-python/metar
