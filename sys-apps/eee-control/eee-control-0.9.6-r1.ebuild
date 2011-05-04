@@ -3,7 +3,8 @@
 # $Header: $
 
 EAPI=2
-
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 inherit eutils distutils git
 
 DESCRIPTION="Tools to manage Hotkeys, WLAN, Bluetooth and other features of an Asus EeePC."
