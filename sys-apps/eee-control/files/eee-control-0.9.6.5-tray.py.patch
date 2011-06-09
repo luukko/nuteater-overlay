@@ -1,0 +1,11 @@
+diff a/EeeControl/tray.py b/EeeControl/tray.py
+--- a/EeeControl/tray.py        2011-06-03 13:12:31.000000000 -0400
++++ b/EeeControl/tray.py        2011-06-03 13:24:49.000000000 -0400
+@@ -281,7 +281,6 @@
+         pynotify.init("eee-control")
+         self.notify = pynotify.Notification("(empty)")
+         self.notify.set_urgency(pynotify.URGENCY_LOW)
+-        self.notify.attach_to_status_icon(self.icon)
+         
+         self.bus.add_signal_receiver(self.wifi_notify, dbus_interface="org.eee.Eee", signal_name="wifi_changed")
+         self.bus.add_signal_receiver(self.touchpad_notify, dbus_interface="org.eee.Eee", signal_name="touchpad_changed")
