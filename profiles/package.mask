@@ -1,3 +1,0 @@
-# Upstream has vanished from the face of the Earth and left us with no git
-# repository to fetch from.
-sys-apps/eee-control
