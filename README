@@ -43,3 +43,10 @@ C++ linear algebra library.
 * dev-python/metar
 
 Python package for interpreting METAR and SPECI weather reports.
+
+
+* media-gfx/inkscape
+
+A patched version of the popular vector graphics program. The patch removes the
+annoying memory cap in pixbuf. With this patch you can now render big raster images
+with Inkscape if you have enough memory.

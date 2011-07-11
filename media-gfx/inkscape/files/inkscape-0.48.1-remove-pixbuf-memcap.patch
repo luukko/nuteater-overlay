@@ -1,0 +1,18 @@
+diff -Naur inkscape-0.48.1-old/src/libnr/nr-pixblock.cpp inkscape-0.48.1-new/src/libnr/nr-pixblock.cpp
+--- inkscape-0.48.1-old/src/libnr/nr-pixblock.cpp	2010-07-13 06:48:40.691600000 +0300
++++ inkscape-0.48.1-new/src/libnr/nr-pixblock.cpp	2011-07-11 17:34:05.498903379 +0300
+@@ -63,13 +63,7 @@
+ 		pb->data.px = nr_pixelstore_1M_new (clear, 0x0);
+ 	} else {
+ 		pb->size = NR_PIXBLOCK_SIZE_BIG;
+-             pb->data.px = NULL;
+-		if (size > 100000000) { // Don't even try to allocate more than 100Mb (5000x5000 RGBA
+-                            // pixels). It'll just bog the system down even if successful. FIXME:
+-                            // Can anyone suggest something better than the magic number?
+-                g_warning ("%lu bytes requested for pixel buffer, I won't try to allocate that.", (long unsigned) size);
+-                return;
+-             }
++                pb->data.px = NULL;
+ 		pb->data.px = g_try_new (unsigned char, size);
+ 		if (pb->data.px == NULL) { // memory allocation failed
+                 g_warning ("Could not allocate %lu bytes for pixel buffer!", (long unsigned) size);
