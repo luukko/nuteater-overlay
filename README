@@ -6,13 +6,6 @@ Ebuilds you will find in this overlay:
 SIMD-oriented Fast Mersenne Twister libraries.
 
 
-* x11-wm/awesome:
-
-Modified ebuild for the Awesome WM. Does not generate manpages unless
-USE="doc", because the requirements for building the documentation are quite
-hefty.
-
-
 * sys-apps/eee-control:
 
 Tools to manage Hotkeys, WLAN, Bluetooth and other features of
