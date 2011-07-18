@@ -28,11 +28,6 @@ newer gcc versions.
 Firmware files for Ralink rt2860 chipsets. Split off from sys-kernel/linux-firmware.
 
 
-* sci-libs/armadillo
-
-C++ linear algebra library.
-
-
 * dev-python/metar
 
 Python package for interpreting METAR and SPECI weather reports.
