@@ -17,9 +17,8 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-DEPEND="virtual/python"
-RDEPEND="virtual/python
-	dev-vcs/git
+DEPEND=""
+RDEPEND="dev-vcs/git
 	dev-python/simplejson"
 
 DOCS="AUTHORS.txt README.rst"
