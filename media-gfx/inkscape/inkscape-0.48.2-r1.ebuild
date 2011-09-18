@@ -35,7 +35,7 @@ COMMON_DEPEND="
 	media-libs/freetype:2
 	>=media-libs/libpng-1.2
 	app-text/libwpd:0.9
-	media-libs/libwpg:0.2
+	app-text/libwpg:0.2
 	sci-libs/gsl
 	x11-libs/libXft
 	>=x11-libs/gtk+-2.10.7:2
