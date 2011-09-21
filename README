@@ -38,3 +38,9 @@ Python package for interpreting METAR and SPECI weather reports.
 A patched version of the popular vector graphics program. The patch removes the
 annoying memory cap in pixbuf. With this patch you can now render big raster images
 with Inkscape if you have enough memory.
+
+
+* dev-vcs/git-annex
+
+git-annex allows managing files with git, without checking the file contents into git.
+Please note that you'll need the haskell overlay to fulfill the dependencies.

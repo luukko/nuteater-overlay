@@ -1,0 +1,24 @@
+diff --git a/Makefile b/Makefile
+index ff58362..8d74a62 100644
+--- a/Makefile
++++ b/Makefile
+@@ -10,7 +10,7 @@ bins=git-annex git-annex-shell git-union-merge
+ mans=git-annex.1 git-annex-shell.1 git-union-merge.1
+ sources=Build/SysConfig.hs Utility/StatFS.hs Utility/Touch.hs Remote/S3.hs
+ 
+-all: $(bins) $(mans) docs
++all: $(bins) $(mans)
+ 
+ Build/SysConfig.hs: configure.hs Build/TestConfig.hs
+ 	$(GHCMAKE) configure
+@@ -46,10 +46,6 @@ install: all
+ 	install $(bins) $(DESTDIR)$(PREFIX)/bin
+ 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
+ 	install -m 0644 $(mans) $(DESTDIR)$(PREFIX)/share/man/man1
+-	install -d $(DESTDIR)$(PREFIX)/share/doc/git-annex
+-	if [ -d html ]; then \
+-		rsync -a --delete html/ $(DESTDIR)$(PREFIX)/share/doc/git-annex/html/; \
+-	fi
+ 
+ test: $(bins)
+ 	@if ! $(GHCMAKE) -O0 test; then \
