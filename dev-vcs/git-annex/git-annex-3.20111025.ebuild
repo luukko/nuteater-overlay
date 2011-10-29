@@ -20,16 +20,19 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="crypt s3 test doc"
 
-DEPEND=">=dev-haskell/haskell-platform-2010
+DEPEND=">=dev-lang/ghc-6.10.1
+	dev-haskell/dataenc
+	dev-haskell/hslogger
+	dev-haskell/http
+	dev-haskell/json
 	dev-haskell/missingh
+	dev-haskell/monad-control
+	dev-haskell/mtl
+	dev-haskell/network
 	dev-haskell/pcre-light
 	dev-haskell/sha
 	dev-haskell/utf8-string
-	dev-haskell/dataenc
-	dev-haskell/monad-control
-	dev-haskell/testpack
 	s3? ( dev-haskell/hs3 )
-	dev-haskell/json
 	doc? ( www-apps/ikiwiki )
 	>=dev-vcs/git-1.7.7
 	|| ( sys-apps/util-linux dev-libs/ossp-uuid )
