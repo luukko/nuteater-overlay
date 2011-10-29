@@ -34,6 +34,7 @@ DEPEND=">=dev-lang/ghc-6.10.1
 	dev-haskell/utf8-string
 	s3? ( dev-haskell/hs3 )
 	doc? ( www-apps/ikiwiki )
+	test? ( dev-haskell/testpack )
 	>=dev-vcs/git-1.7.7
 	|| ( sys-apps/util-linux dev-libs/ossp-uuid )
 	|| ( net-misc/curl net-misc/wget )
