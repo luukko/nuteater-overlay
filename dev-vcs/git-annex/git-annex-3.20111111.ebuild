@@ -44,7 +44,7 @@ DEPEND=">=dev-lang/ghc-6.10.1
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	use doc || epatch "${FILESDIR}/${PN}-no-docs.patch"
+	use doc || epatch "${FILESDIR}/${PN}-no-docs-2.patch"
 }
 
 src_install() {
