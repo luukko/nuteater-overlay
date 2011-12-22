@@ -26,7 +26,7 @@ DEPEND=">=dev-lang/ghc-6.10.1
 	dev-haskell/http
 	dev-haskell/json
 	dev-haskell/missingh
-	dev-haskell/monad-control
+	<dev-haskell/monad-control-0.3
 	dev-haskell/mtl
 	dev-haskell/network
 	dev-haskell/pcre-light
