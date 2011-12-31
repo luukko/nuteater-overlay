@@ -25,12 +25,14 @@ DEPEND=">=dev-lang/ghc-6.10.1
 	dev-haskell/hslogger
 	dev-haskell/http
 	dev-haskell/json
+	dev-haskell/lifted-base
 	dev-haskell/missingh
-	<dev-haskell/monad-control-0.3
+	dev-haskell/monad-control
 	dev-haskell/mtl
 	dev-haskell/network
 	dev-haskell/pcre-light
 	dev-haskell/sha
+	dev-haskell/transformers-base
 	dev-haskell/utf8-string
 	s3? ( dev-haskell/hs3 )
 	doc? ( www-apps/ikiwiki )
