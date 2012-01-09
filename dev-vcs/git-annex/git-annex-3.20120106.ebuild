@@ -18,7 +18,7 @@ SRC_URI=""
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="crypt s3 test doc"
+IUSE="crypt test doc"
 
 DEPEND=">=dev-lang/ghc-6.10.1
 	dev-haskell/dataenc
@@ -34,7 +34,7 @@ DEPEND=">=dev-lang/ghc-6.10.1
 	dev-haskell/sha
 	dev-haskell/transformers-base
 	dev-haskell/utf8-string
-	s3? ( dev-haskell/hs3 )
+	dev-haskell/hs3
 	doc? ( www-apps/ikiwiki )
 	test? ( dev-haskell/testpack )
 	>=dev-vcs/git-1.7.7
